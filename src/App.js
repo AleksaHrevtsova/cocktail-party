@@ -1,7 +1,10 @@
+import { Suspense } from 'react'
 import './App.css'
-// импорты
-// переключатель, роут, редирект
-// массив роутов
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Navigation } from './components/Navigation'
+import { Switch, Route } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import routes from './routes'
 // {connect}
 // экшены и редюсеры
 
@@ -11,9 +14,16 @@ import './App.css'
 function App() {
   return (
     <>
-      <h1>Cocktail Party</h1>
+      <Navigation />
+      <Suspense fallback="Waiting...">
+        <Switch>
+          {routes.map((route) => (
+            <Route {...route} />
+          ))}
+        </Switch>
+      </Suspense>
     </>
   )
 }
 
-export default App
+export default withRouter(App)

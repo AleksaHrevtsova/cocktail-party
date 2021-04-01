@@ -1,6 +1,12 @@
+import axios from 'axios'
+
+axios.defaults.baseURL = `https://www.thecocktaildb.com/api/json/v1/1/`
+
 export function getCocktail(search) {
-  const url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`
-  return fetch(url)
-    .then((r) => r.json())
-    .then((d) => d)
+  const url = `search.php?s=${search}`
+  return axios
+    .get(url)
+    .then((response) => response.data)
+    .then((data) => data.drinks)
+    .catch((error) => console.log(error))
 }
