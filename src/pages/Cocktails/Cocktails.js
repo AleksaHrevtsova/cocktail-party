@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { getCocktail } from '../../services/cocktailsApi'
 import { connect } from 'react-redux'
 import actions from '../../redux/coctails/actions'
-import { act } from 'react-dom/test-utils'
 
 class Cocktails extends Component {
   state = {

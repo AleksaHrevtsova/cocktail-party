@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 
 const Navigation = ({ match }) => {
-  console.log(match)
-  console.log(match.url)
+  // console.log(match)
+  // console.log(match.url)
 
   return (
     <nav>

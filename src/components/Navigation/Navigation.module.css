@@ -1,6 +1,9 @@
 .navList {
   list-style: none;
   display: flex;
-  width: 70%;
-  justify-content: space-between;
+  width: 100%;
+  justify-content: space-evenly;
+  background: black;
+  margin: 0 auto;
+  padding: 20px;
 }
