@@ -17,7 +17,7 @@ const getOrders = () => (dispatch) => {
   dispatch(getOrdersRequest())
   axios
     .get('/orders')
-    .then(({data}) => {
+    .then(({ data }) => {
       return dispatch(getOrdersSuccess(data))
     })
     .catch((error) => {
@@ -29,7 +29,7 @@ const addOrder = (order) => (dispatch) => {
   dispatch(addOrderRequest())
   axios
     .post('/orders', order)
-    .then((data) => {
+    .then(({ data }) => {
       return dispatch(addOrderSuccess(data))
     })
     .catch((error) => {
@@ -46,8 +46,9 @@ const deleteOrder = (id) => (dispatch) => {
   dispatch(deleteOrderRequest())
   axios
     .delete(`/orders/${id}`)
-    .then((data) => {
-      return dispatch(deleteOrderSuccess(data))
+    .then(({ data }) => {
+      console.log('DELETE', data)
+      return dispatch(deleteOrderSuccess(id))
     })
     .catch((error) => {
       return dispatch(deleteOrderError(error))

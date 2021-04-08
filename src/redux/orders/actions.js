@@ -16,4 +16,4 @@ export const deleteOrderRequest = createAction('DELETE_ORDER_REQUEST')
 export const deleteOrderSuccess = createAction('DELETE_ORDER_SUCCESS')
 export const deleteOrderError = createAction('DELETE_ORDER_ERROR')
 
-// export default {///}
+export const filterAction = createAction('FILTER_ORDERS')

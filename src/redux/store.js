@@ -9,7 +9,9 @@ const store = configureStore({
     query: reducers.cocktailReducer,
     cocktailsData: reducers.allCocktailsReducer,
     showModal: reducers.modalReducer,
+    
     orders: orderReducer.orderReducer,
+    filterOrder: orderReducer.filterReducer,
   },
 })
 

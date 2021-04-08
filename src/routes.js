@@ -7,7 +7,7 @@ const routes = [
     exact: true,
     path: '/',
     // path: `${match.url}`,
-    component: lazy(() => import('./pages/Home/Home')),
+    component: lazy(() => import('./pages/Home/Container')),
   },
   {
     key: uuid(),
