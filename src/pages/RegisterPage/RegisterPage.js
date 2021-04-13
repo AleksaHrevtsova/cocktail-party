@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import operations from '../../redux/auth/operations'
+import selectors from '../../redux/auth/selectors'
 
 class RegisterPage extends Component {
   state = {
@@ -13,9 +16,11 @@ class RegisterPage extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
+    this.props.myRegister({ ...this.state })
     this.setState({ name: '', email: '', password: '' })
   }
   render() {
+    console.log(this.props.isAuth)
     const { handleChange, handleSubmit } = this
     const { name, email, password } = this.state
     return (
@@ -60,4 +65,10 @@ class RegisterPage extends Component {
     )
   }
 }
-export default RegisterPage
+const mapStateToProps = (store) => ({
+  isAuth: selectors.isAuthenticated(store),
+})
+const mapDispatchToProps = {
+  myRegister: operations.register,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)

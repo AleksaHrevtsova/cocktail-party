@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import operations from '../../redux/auth/operations'
 
 class LoginPage extends Component {
   state = {
@@ -12,6 +14,7 @@ class LoginPage extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
+    this.props.myLogin({ ...this.state })
     this.setState({ email: '', password: '' })
   }
   render() {
@@ -49,4 +52,7 @@ class LoginPage extends Component {
     )
   }
 }
-export default LoginPage
+const mapDispatchToProps = {
+  myLogin: operations.login,
+}
+export default connect(null, mapDispatchToProps)(LoginPage)

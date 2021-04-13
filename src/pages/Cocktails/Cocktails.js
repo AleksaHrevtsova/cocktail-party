@@ -12,26 +12,20 @@ class Cocktails extends Component {
     this.getData()
   }
   componentDidUpdate(prevProps, prevState) {
-    // if (prevState.queryValue !== this.state.queryValue) {
-    //   this.getData()
-    // }
     if (prevProps.myQuery !== this.props.myQuery) {
       this.getData()
     }
   }
   getData = () => {
-    const { queryValue } = this.state
     const { myQuery } = this.props
     return getCocktail(myQuery).then((drinks) => {
       if (drinks !== null) {
-        // this.setState({ drinks })
         this.props.getMyCocktails(drinks)
       }
     })
   }
   validateInput = (value) => {
     if (value.trim() !== '') {
-      //   this.setState({ queryValue: value })
       this.props.getMyQuery(value)
     }
   }
@@ -43,12 +37,10 @@ class Cocktails extends Component {
   }
   toggleModal = () => {
     const { myModal, myChangeModal } = this.props
-    console.log(myModal)
     return myChangeModal(!myModal)
   }
   render() {
     const { toggleModal } = this
-    const { drinks } = this.state
     const { myModal, myCocktails } = this.props
     return (
       <>
@@ -67,7 +59,6 @@ class Cocktails extends Component {
   }
 }
 const mapStateToProps = (store) => {
-  console.log(store.cocktailsData)
   return {
     myQuery: store.query,
     myCocktails: store.cocktailsData,

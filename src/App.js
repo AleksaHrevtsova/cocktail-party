@@ -3,6 +3,8 @@ import './App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { Navigation } from './components/Navigation'
 import { Switch, Route } from 'react-router-dom'
+import PrivateRoute from './components/Private/Private'
+import PublicRoute from './components/Public/Public'
 import { withRouter } from 'react-router-dom'
 import routes from './routes'
 // {connect}
@@ -11,16 +13,25 @@ import routes from './routes'
 // import { getCocktail } from './services/cocktailsApi'
 // getCocktail('margarita').then((d) => console.log(d))
 
-function App() {
+function App({ isAuth }) {
   return (
     <>
-      <Navigation />
+      <Navigation isAuth={isAuth} />
       <Suspense fallback="Waiting...">
         <Switch>
+          {routes.map((route) =>
+            route.private ? (
+              <PrivateRoute {...route} />
+            ) : (
+              <PublicRoute restricted={route.restricted} {...route} />
+            ),
+          )}
+        </Switch>
+        {/* <Switch>
           {routes.map((route) => (
             <Route {...route} />
           ))}
-        </Switch>
+        </Switch> */}
       </Suspense>
     </>
   )
