@@ -19,6 +19,16 @@ const Navigation = ({ match }) => {
         <li>
           <NavLink to={`${match.url}contacts`}>Contacts</NavLink>
         </li>
+        <li>
+          <NavLink to="/register" exact>
+            Registration
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/login" exact>
+            Login
+          </NavLink>
+        </li>
       </ul>
     </nav>
   )

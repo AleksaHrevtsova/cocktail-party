@@ -21,5 +21,17 @@ const routes = [
     path: '/contacts',
     component: lazy(() => import('./pages/Contacts/Contacts')),
   },
+  {
+    key: uuid(),
+    exact: true,
+    path: '/register',
+    component: lazy(() => import('./pages/RegisterPage/RegisterPage')),
+  },
+  {
+    key: uuid(),
+    exact: true,
+    path: '/login',
+    component: lazy(() => import('./pages/LoginPage/LoginPage')),
+  },
 ]
 export default routes
