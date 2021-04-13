@@ -42,14 +42,10 @@ const addOrder = (order) => (dispatch) => {
 
 const updateOrder = ({ id, status }) => (dispatch) => {
   const update = { status }
-  console.log(update, id)
   dispatch(updateOrderRequest())
   axios
     .patch(`/orders/${id}`, update)
-    .then(({ data }) => {
-      console.log(data)
-      dispatch(updateOrderSuccess(data))
-    })
+    .then(({ data }) => dispatch(updateOrderSuccess(data)))
     .catch((error) => dispatch(updateOrderError(error)))
 }
 

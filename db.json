@@ -5,6 +5,12 @@
       "count": "6",
       "status": true,
       "id": 1
+    },
+    {
+      "name": "Fanta",
+      "count": "2",
+      "status": true,
+      "id": 2
     }
   ]
 }

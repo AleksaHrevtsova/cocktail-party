@@ -10,10 +10,8 @@ import {
 const orderReducer = createReducer([], {
   [getOrdersSuccess]: (_, { payload }) => payload,
   [addOrderSuccess]: (state, { payload }) => [...state, payload],
-  [updateOrderSuccess]: (state, { payload }) => {
-    console.log(payload)
-    return state.map((order) => (order.id === payload.id ? payload : order))
-  },
+  [updateOrderSuccess]: (state, { payload }) =>
+    state.map((order) => (order.id === payload.id ? payload : order)),
   [deleteOrderSuccess]: (state, { payload }) =>
     state.filter((order) => order.id !== payload),
 })

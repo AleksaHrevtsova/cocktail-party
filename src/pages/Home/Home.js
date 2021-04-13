@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
 import s from './Home.module.css'
 import { Table, Button } from 'react-bootstrap'
-// import operations from '../../redux/orders/operations'
-// import { connect } from 'react-redux'
-// import { getOrders } from '../../redux/orders/selectors'
-// console.log(getOrders)
-// console.log(operations)
 
 class Home extends Component {
   state = { name: '', count: '', filter: '' }
-  // componentDidMount() {
-  //   this.props.getMyOrders()
-  // }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
@@ -29,7 +21,6 @@ class Home extends Component {
   }
   handleDelete = (id) => {
     this.props.deleteMyOrder(id)
-    // this.props.getMyOrders()
   }
   handleUpdate = (id, status) => {
     return this.props.getMycomplete({ id, status })
@@ -41,7 +32,6 @@ class Home extends Component {
   }
 
   render() {
-    // console.log(this.props.getMyFilter)
     const {
       handleChange,
       handleSubmit,
@@ -49,7 +39,6 @@ class Home extends Component {
       handleUpdate,
       filterSubmit,
     } = this
-    // console.log('myOrders', this.props.myOrders)
     const { myOrders } = this.props
 
     return (
@@ -112,22 +101,11 @@ class Home extends Component {
                     type="checkbox"
                     name="done"
                     id="done"
-                    onChange={() => {
-                      // status = !status
-                      console.log(`change`, !status)
-                      return handleUpdate(id, !status)
-                    }}
+                    onChange={() => handleUpdate(id, !status)}
                     checked={status}
                   />
                 </td>
                 <td>
-                  <Button
-                    variant="light"
-                    className={s.editBtn}
-                    // onClick={handleUpdate}
-                  >
-                    edit
-                  </Button>
                   <Button variant="danger" onClick={() => handleDelete(id)}>
                     delete
                   </Button>
@@ -140,14 +118,5 @@ class Home extends Component {
     )
   }
 }
-// const mapStateToProps = (store) => {
-//   return {
-//     // myOrders: store.orders,
-//     myOrders: getOrders(store),
-//   }
-// }
-// const mapDispatchToProps = {
-//   getMyOrders: operations.getOrders,
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(Home)
+
 export default Home
