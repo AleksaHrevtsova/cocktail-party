@@ -19,15 +19,18 @@ class HomeContainer extends Component {
       getMyOrders,
       deleteMyOrder,
       getMyFilter,
+      getMycomplete,
     } = this.props
     return (
       <>
         <Home
           myOrders={myOrders}
+          // filteredOrders={filteredOrders}
           addMyOrder={addMyOrder}
           getMyOrders={getMyOrders}
           deleteMyOrder={deleteMyOrder}
           getMyFilter={getMyFilter}
+          getMycomplete={getMycomplete}
         />
         {/*  */}
         {/*  */}
@@ -45,6 +48,7 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = {
   getMyOrders: operations.getOrders,
   addMyOrder: operations.addOrder,
+  getMycomplete: operations.updateOrder,
   deleteMyOrder: operations.deleteOrder,
 
   getMyFilter: filterAction,

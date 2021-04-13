@@ -31,6 +31,9 @@ class Home extends Component {
     this.props.deleteMyOrder(id)
     // this.props.getMyOrders()
   }
+  handleUpdate = (id, status) => {
+    return this.props.getMycomplete({ id, status })
+  }
 
   filterSubmit = (e) => {
     e.preventDefault()
@@ -38,9 +41,15 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.props.getMyFilter)
-    const { handleChange, handleSubmit, handleDelete, filterSubmit } = this
-    console.log('myOrders', this.props.myOrders)
+    // console.log(this.props.getMyFilter)
+    const {
+      handleChange,
+      handleSubmit,
+      handleDelete,
+      handleUpdate,
+      filterSubmit,
+    } = this
+    // console.log('myOrders', this.props.myOrders)
     const { myOrders } = this.props
 
     return (
@@ -72,9 +81,10 @@ class Home extends Component {
               id="filter"
               type="text"
               placeholder="search your order"
-              onChange={(e) => {this.setState({ filter: e.target.value })
-              this.props.getMyFilter(e.target.value)
-            }}
+              onChange={(e) => {
+                this.setState({ filter: e.target.value })
+                this.props.getMyFilter(e.target.value)
+              }}
             />
           </form>
         </div>
@@ -91,28 +101,34 @@ class Home extends Component {
             </tr>
           </thead>
           <tbody>
-            {myOrders.map((order, idx) => (
-              <tr key={order.id}>
+            {myOrders.map(({ id, status, name, count }, idx) => (
+              <tr key={id}>
                 <td>{idx + 1}</td>
                 <td>@mdo</td>
-                <td>{order.name}</td>
-                <td>{order.count}</td>
+                <td>{name}</td>
+                <td>{count}</td>
                 <td>
                   <input
                     type="checkbox"
                     name="done"
                     id="done"
-                    checked={order.status}
+                    onChange={() => {
+                      // status = !status
+                      console.log(`change`, !status)
+                      return handleUpdate(id, !status)
+                    }}
+                    checked={status}
                   />
                 </td>
                 <td>
-                  <Button variant="light" className={s.editBtn}>
+                  <Button
+                    variant="light"
+                    className={s.editBtn}
+                    // onClick={handleUpdate}
+                  >
                     edit
                   </Button>
-                  <Button
-                    variant="danger"
-                    onClick={() => handleDelete(order.id)}
-                  >
+                  <Button variant="danger" onClick={() => handleDelete(id)}>
                     delete
                   </Button>
                 </td>

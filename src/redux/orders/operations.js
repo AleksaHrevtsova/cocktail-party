@@ -5,6 +5,9 @@ import {
   addOrderRequest,
   addOrderSuccess,
   addOrderError,
+  updateOrderRequest,
+  updateOrderSuccess,
+  updateOrderError,
   deleteOrderRequest,
   deleteOrderSuccess,
   deleteOrderError,
@@ -37,10 +40,18 @@ const addOrder = (order) => (dispatch) => {
     })
 }
 
-// const updateOrder = (id) => dispatch =>{
-//     dispatch()
-//     axios.update('/')
-// }
+const updateOrder = ({ id, status }) => (dispatch) => {
+  const update = { status }
+  console.log(update, id)
+  dispatch(updateOrderRequest())
+  axios
+    .patch(`/orders/${id}`, update)
+    .then(({ data }) => {
+      console.log(data)
+      dispatch(updateOrderSuccess(data))
+    })
+    .catch((error) => dispatch(updateOrderError(error)))
+}
 
 const deleteOrder = (id) => (dispatch) => {
   dispatch(deleteOrderRequest())
@@ -55,4 +66,4 @@ const deleteOrder = (id) => (dispatch) => {
     })
 }
 
-export default { getOrders, addOrder, deleteOrder }
+export default { getOrders, addOrder, updateOrder, deleteOrder }
