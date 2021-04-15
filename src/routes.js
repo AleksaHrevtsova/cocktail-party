@@ -33,7 +33,7 @@ const routes = [
     path: '/register',
     component: lazy(() => import('./pages/RegisterPage/RegisterPage')),
     private: false,
-    restricted: false,
+    restricted: true,
   },
   {
     key: uuid(),
@@ -41,7 +41,7 @@ const routes = [
     path: '/login',
     component: lazy(() => import('./pages/LoginPage/LoginPage')),
     private: false,
-    restricted: false,
+    restricted: true,
   },
 ]
 export default routes
