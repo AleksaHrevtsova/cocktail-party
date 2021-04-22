@@ -11,6 +11,7 @@ const PublicRoute = ({
 }) => {
   console.log(isAuth)
 
+  // const isAuth = useSelector(selectors.isAuthenticated);
   return (
     <Route
       {...route}
@@ -18,6 +19,9 @@ const PublicRoute = ({
         isAuth && restricted ? <Redirect to="/" /> : <Component {...props} />
       }
     />
+    // <Route  {...route}>
+    //   {isAuth && restricted ? <Redirect to="/" /> : children}
+    // </Route>
   )
 }
 

@@ -1,7 +1,12 @@
 import React, { Component, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import operations from '../../redux/auth/operations'
+
+// const mapDispatchToProps = {
+//   myLogin: operations.login,
+// }
+// export default connect(null, mapDispatchToProps)(LoginPage)
 
 const LoginPage = ({ myLogin }) => {
   // здесь был стейт
@@ -12,9 +17,11 @@ const LoginPage = ({ myLogin }) => {
     const { name, value } = e.target
     name === 'email' ? setEmail(value) : setPassword(value)
   }
+  const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault()
-    myLogin({ email, password })
+    dispatch(operations.login({ email, password }))
+    // myLogin({ email, password })
     setEmail('')
     setPassword('')
   }
@@ -99,7 +106,8 @@ const LoginPage = ({ myLogin }) => {
 //     )
 //   }
 // }
-const mapDispatchToProps = {
-  myLogin: operations.login,
-}
-export default connect(null, mapDispatchToProps)(LoginPage)
+// const mapDispatchToProps = {
+//   myLogin: operations.login,
+// }
+// export default connect(null, mapDispatchToProps)(LoginPage)
+export default LoginPage

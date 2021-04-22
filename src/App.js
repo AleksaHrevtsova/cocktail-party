@@ -15,7 +15,7 @@ import routes from './routes'
 
 function App({ isAuth }) {
   return (
-    <>
+    <div className="App">
       <Navigation isAuth={isAuth} />
       <Suspense fallback="Waiting...">
         <Switch>
@@ -33,7 +33,7 @@ function App({ isAuth }) {
           ))}
         </Switch> */}
       </Suspense>
-    </>
+    </div>
   )
 }
 

@@ -1,6 +1,11 @@
 // импортируем функцию создания стора
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import { persistReducer, persistStore } from 'redux-persist'
+import { persistReducer, persistStore,  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER, } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 // экспортируем стор
@@ -27,7 +32,9 @@ const store = configureStore({
   },
   middleware: [
     ...getDefaultMiddleware({
-      serializableCheck: false,
+      serializableCheck:  {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
     }),
   ],
 })

@@ -47,7 +47,7 @@ const addOrder = (order) => async (dispatch) => {
   //     body: JSON.stringify(order),
   //   })
   //   const data = await res.json()
-  //   console.log(data.data)
+  //   console.log(data)
 
   //   dispatch(addOrderSuccess(data.data))
   // } catch (err) {
@@ -98,7 +98,6 @@ const deleteOrder = (id) => async (dispatch) => {
   // } catch (err) {
   //   dispatch(deleteOrderError(err))
   // }
-
   // axios
   //   .delete(`/orders/${id}`)
   //   .then(({ data }) => {

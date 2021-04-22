@@ -1,14 +1,19 @@
 import React, { Component, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import operations from '../../redux/auth/operations'
-import selectors from '../../redux/auth/selectors'
+
+// const mapDispatchToProps = {
+//   myRegister: operations.register,
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
 
 const RegisterPage = ({ myRegister, isAuth }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const dispatch = useDispatch()
   const handleChange = (e) => {
     const { name, value } = e.target
     switch (name) {
@@ -28,7 +33,8 @@ const RegisterPage = ({ myRegister, isAuth }) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    myRegister({ name, email, password })
+    // myRegister({ name, email, password })
+    dispatch(operations.register({ name, email, password }))
     setName('')
     setEmail('')
     setPassword('')
@@ -136,10 +142,11 @@ const RegisterPage = ({ myRegister, isAuth }) => {
 //     )
 //   }
 // }
-const mapStateToProps = (store) => ({
-  isAuth: selectors.isAuthenticated(store),
-})
-const mapDispatchToProps = {
-  myRegister: operations.register,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
+// const mapStateToProps = (store) => ({
+//   isAuth: selectors.isAuthenticated(store),
+// })
+// const mapDispatchToProps = {
+//   myRegister: operations.register,
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)
+export default RegisterPage
